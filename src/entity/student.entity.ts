@@ -1,18 +1,18 @@
 import {Column, PrimaryGeneratedColumn, Entity} from "typeorm"
 
 @Entity("students")
-export class Studnets{
+export class Students{
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
     name: string;
 
-    @Column()
+    @Column({unique: true})
     email: string;
 
-    @Column()
-    phone: number;
+    @Column({unique: true})
+    phone: string;
 
     @Column()
     age: number;
