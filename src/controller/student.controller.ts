@@ -47,4 +47,22 @@ export class StudentController{
             })
         }
     }
+
+    static async getUserById(req: Request, res: Response){
+        try{
+            const id = Number(req.params.id)
+            const student = await StudentService.getStudentsById(id)
+            return res.status(200).json({
+            success: true,
+            messege: `Successfully fetched student having id: ${id}`,
+            data: student
+       })
+        }catch(e){
+            console.log(e)
+            return res.status(500).json({
+                success: false,
+                message: "Internal Server Error"
+            })
+        }
+    }
 }

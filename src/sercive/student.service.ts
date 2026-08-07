@@ -37,4 +37,10 @@ export class StudentService{
     static async getAllStudents(){
         return await studentRepository.find()
     }
+
+    static async getStudentsById(id: number){
+        return await studentRepository.findOne({
+            where: {id:id}
+        })
+    }
 }
