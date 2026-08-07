@@ -24,6 +24,13 @@ export class StudentController{
                     message: e.message
                 })
             }
+
+            if (e.message === "Student age must be greater than 15"){
+                return res.status(401).json({
+                    success: false,
+                    message: e.message
+                })
+            }
             return res.status(500).json({
                 success: false,
                 message: "Internal server error"

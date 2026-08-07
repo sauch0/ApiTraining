@@ -29,6 +29,9 @@ export class StudentService{
         if(numberExists){
             throw new Error("This phone number already exists")
         }
+        if(studentData.age<=15){
+            throw new Error("Student age must be greater than 15")
+        }
 
         const student = studentRepository.create(studentData)
         return await studentRepository.save(student)
