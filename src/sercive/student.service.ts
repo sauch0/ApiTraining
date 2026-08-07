@@ -33,4 +33,8 @@ export class StudentService{
         const student = studentRepository.create(studentData)
         return await studentRepository.save(student)
     }
+
+    static async getAllStudents(){
+        return await studentRepository.find()
+    }
 }

@@ -29,6 +29,22 @@ export class StudentController{
                 message: "Internal server error"
             })
         }
+    }
 
+    static async getAllUsers(req: Request, res: Response){
+        try{
+            const student = await StudentService.getAllStudents()
+            return res.status(200).json({
+                success: true,
+                message: "Students fetched successfully",
+                data: {student}
+            })
+        } catch(e){
+            console.log(e)
+            return res.status(500).json({
+                success: false,
+                message: "Internal Server Error"
+            })
+        }
     }
 }
