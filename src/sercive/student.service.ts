@@ -1,14 +1,7 @@
 import { error } from "node:console";
 import { studentRepository } from "../repository";
 import bcrypt from "bcrypt"
-
-interface Student{
-  id: number,
-  name: string,
-  email: string,
-  phone: string,
-  age: number
-}
+import { Student } from "../interfaces/student.interface";
 
 const SALT = 10;
 
@@ -37,11 +30,11 @@ export class StudentService{
         return await studentRepository.save(student)
     }
 
-    static async getAllStudents(){
+        static async getAllStudents(){
         return await studentRepository.find()
     }
 
-    static async getStudentsById(id: number){
+        static async getStudentsById(id: number){
         return await studentRepository.findOne({
             where: {id:id}
         })

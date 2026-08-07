@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { StudentService } from "../sercive/student.service";
+import { Students } from "../entity/student.entity";
 
 export class StudentController{
     static async createStudent(req: Request, res:Response){
@@ -71,5 +72,34 @@ export class StudentController{
                 message: "Internal Server Error"
             })
         }
+    }
+
+    static async updateStudent(id: number, studentData: Students) {
+        const user = await userRepository.findOne({
+        where: { id:userid },
+        });
+
+        if (!user) {
+        return null;
+        }
+
+        const emailExists = await userRepository.findOne({
+        where: { email: userData.email },
+        });
+
+        if (emailExists && emailExists.id !== userid) {
+        throw new Error("Email already exists");
+        }
+
+        const usernameExists = await userRepository.findOne({
+        where: { username: userData.username },
+        });
+
+        if (usernameExists && usernameExists.id !== userid) {
+        throw new Error("Username already exists");
+        }
+
+        const updatedUser = userRepository.merge(user, userData)
+        return await userRepository.save(updatedUser);
     }
 }
