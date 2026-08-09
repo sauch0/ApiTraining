@@ -8,9 +8,9 @@
     "dev": "ts-node-dev --respawn src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "migration": "npx typeorm-ts-node-commonjs migration:run -d src/configs/data-source.ts",
-    "revert-migration": "npx typeorm-ts-node-commonjs migration:revert -d src/configs/data-source.ts",
-    "create-migration": " npx typeorm-ts-node-commonjs migration:generate src/migrations/NewMigration -d src/configs/data-source.ts"
+    "migration": "npx typeorm-ts-node-commonjs migration:run -d src/config/data-source.ts",
+    "revert-migration": "npx typeorm-ts-node-commonjs migration:revert -d src/config/data-source.ts",
+    "create-migration": " npx typeorm-ts-node-commonjs migration:generate src/migrations/NewMigration -d src/config/data-source.ts"
   },
   "keywords": [],
   "author": "",
