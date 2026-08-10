@@ -1,6 +1,7 @@
 import { DataSource } from "typeorm"
 import "reflect-metadata"
 import { Students } from "../entity/student.entity"
+import { Courses } from "../entity/courses.entity"
 
 export const AppDataSource = new DataSource({
     type: "mysql",
@@ -11,16 +12,16 @@ export const AppDataSource = new DataSource({
     database: "training",
     synchronize: false,
     logging: true,
-    entities: [Students],
-    subscribers: [],      
+    entities: [Students, Courses],
+    subscribers: [],
     migrations: ["src/migrations/*.ts"],
 })
 
 export const initializeDatabase = async () => {
-    try{
+    try {
         await AppDataSource.initialize()
         console.log("Databse Connected.")
-    }catch(error){
+    } catch (error) {
         console.log("Failed to connect databse")
         throw error
     }
