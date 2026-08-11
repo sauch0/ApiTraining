@@ -12,7 +12,10 @@ export class EnrollmentService {
         if (existingEnrollment) {
             throw new Error("Enrollment already exists")
         }
-        const enrollment = enrollmentRepository.create(enrollmentData)
+        const enrollment = enrollmentRepository.create({
+            studentId: enrollmentData.student_id,
+            courseId: enrollmentData.course_id
+        })
         return await enrollmentRepository.save(enrollment)
     }
 
