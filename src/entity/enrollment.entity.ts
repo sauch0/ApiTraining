@@ -22,4 +22,4 @@ export class Enrollments {
     @JoinColumn({ name: "course_id" })
     course: Courses
 
-}
+}   

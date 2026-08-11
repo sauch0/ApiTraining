@@ -1,9 +1,6 @@
-import { error } from "node:console";
-import { studentRepository } from "../repository";
-import bcrypt from "bcrypt"
-import { Student } from "../interfaces/student.interface";
 
-const SALT = 10;
+import { studentRepository } from "../repository";
+import { Student } from "../interfaces/student.interface";
 
 export class StudentService {
 
