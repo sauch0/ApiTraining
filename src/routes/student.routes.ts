@@ -8,4 +8,4 @@ router.get("/students", StudentController.getAllUsers)
 router.get("/student/:id", StudentController.getUserById)
 router.put("/student/:id", StudentController.updateStudent)
 router.delete("/student/:id", StudentController.deleteStudent)
-export default router;
+export default router
