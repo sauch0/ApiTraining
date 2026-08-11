@@ -46,6 +46,12 @@ export class EnrollmentController {
         try {
             const id = Number(req.params.id)
             const enrollment = await EnrollmentService.getEnrollmentById(id)
+            if (enrollment === null) {
+                return res.status(404).json({
+                    success: false,
+                    message: `Enrollment with id: ${id} not found`
+                })
+            }
             return res.status(200).json({
                 success: true,
                 message: `Successfully fetched enrollment having id: ${id}`,

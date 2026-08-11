@@ -24,6 +24,13 @@ export class EnrollmentService {
     }
 
     static async getEnrollmentById(id: number) {
+        const enrollment = await enrollmentRepository.findOne({
+            where: { id: id }
+        })
+
+        if (!enrollment) {
+            return null
+        }
         return await enrollmentRepository.findOne({
             where: { id: id }
         })
