@@ -2,6 +2,7 @@ import { DataSource } from "typeorm"
 import "reflect-metadata"
 import { Students } from "../entity/student.entity"
 import { Courses } from "../entity/courses.entity"
+import { Enrollments } from "../entity/enrollment.entity"
 
 export const AppDataSource = new DataSource({
     type: "mysql",
@@ -12,7 +13,7 @@ export const AppDataSource = new DataSource({
     database: "training",
     synchronize: false,
     logging: true,
-    entities: [Students, Courses],
+    entities: [Students, Courses, Enrollments],
     subscribers: [],
     migrations: ["src/migrations/*.ts"],
 })
