@@ -20,8 +20,6 @@ export const createCourseSchema = [
     body("duration")
         .notEmpty()
         .withMessage("Duration is required.")
-        .isInt({ min: 1 })
-        .withMessage("Duration must be a positive integer.")
     ,
 ]
 
@@ -45,7 +43,4 @@ export const updateCourseSchema = [
     body("duration")
         .notEmpty()
         .withMessage("Duration is required.")
-        .isInt({ min: 1 })
-        .withMessage("Duration must be a positive integer.")
-    ,
 ]

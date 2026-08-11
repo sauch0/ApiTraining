@@ -1,6 +1,6 @@
 import { body } from "express-validator";
 
-export const createUserSchema = [
+export const createStudentSchema = [
     body("name")
         .notEmpty()
         .withMessage("Name is required.")
@@ -32,7 +32,7 @@ export const createUserSchema = [
         .withMessage("Age must be greater than 15")
 ]
 
-export const updateUserSchema = [
+export const updateStudentSchema = [
     body("name")
         .notEmpty()
         .withMessage("Name is required.")
