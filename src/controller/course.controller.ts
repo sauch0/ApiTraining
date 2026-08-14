@@ -26,11 +26,11 @@ export class CourseController {
 
     static async getAllCourses(req: Request, res: Response) {
         try {
-            const courses = await CourseService.getAllCourses()
+            const courses = await CourseService.getAllCourses(req.query)
             return res.status(200).json({
                 success: true,
                 message: "Courses fetched successfully",
-                data: { courses }
+                data: courses.data
             })
         } catch (e) {
             console.log(e)

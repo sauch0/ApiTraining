@@ -27,8 +27,25 @@ export class StudentService {
         return await studentRepository.save(student)
     }
 
-    static async getAllStudents() {
-        return await studentRepository.find()
+    static async getAllStudents(query) {
+        const page = Math.max(Number(query.page) || 1, 1)
+        const limit = Number(query.limit) || 5
+
+        const qb = studentRepository.createQueryBuilder("students")
+            .select([
+                "students.id",
+                "students.name",
+                "students.email",
+                "students.phone",
+                "students.age",
+            ])
+
+
+        qb.skip((page - 1) * limit)
+        qb.take(limit)
+
+        const [data, total] = await qb.getManyAndCount()
+        return { data, total }
     }
 
     static async getStudentsById(id: number) {

@@ -27,11 +27,11 @@ export class EnrollmentController {
 
     static async getAllEnrollments(req: Request, res: Response) {
         try {
-            const enrollment = await EnrollmentService.getAllEnrollments()
+            const enrollment = await EnrollmentService.getAllEnrollments(req.query)
             return res.status(200).json({
                 success: true,
                 message: "Enrollments fetched successfully",
-                data: enrollment
+                data: enrollment.data
             })
         } catch (e) {
             console.log(e)

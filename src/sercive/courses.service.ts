@@ -15,8 +15,21 @@ export class CourseService {
         return await courseRepository.save(course)
     }
 
-    static async getAllCourses() {
-        return await courseRepository.find()
+    static async getAllCourses(query) {
+        const qb = courseRepository.createQueryBuilder("courses")
+            .select([
+                "courses.id",
+                "courses.name",
+                "courses.description",
+                "courses.price",
+                "courses.status"
+            ])
+        const page = Math.max(Number(query.page) || 1, 1)
+        const limit = Number(query.limit) || 5
+        qb.skip((page - 1) * limit)
+            .take(limit)
+        const [data, total] = await qb.getManyAndCount()
+        return { data, total }
     }
 
     static async getCourseById(id: number) {

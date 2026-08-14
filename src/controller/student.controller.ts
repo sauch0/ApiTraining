@@ -41,11 +41,11 @@ export class StudentController {
 
     static async getAllUsers(req: Request, res: Response) {
         try {
-            const student = await StudentService.getAllStudents()
+            const student = await StudentService.getAllStudents(req.query)
             return res.status(200).json({
                 success: true,
                 message: "Students fetched successfully",
-                data: { student }
+                data: student.data
             })
         } catch (e) {
             console.log(e)

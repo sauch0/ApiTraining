@@ -19,8 +19,19 @@ export class EnrollmentService {
         return await enrollmentRepository.save(enrollment)
     }
 
-    static async getAllEnrollments() {
-        return await enrollmentRepository.find()
+    static async getAllEnrollments(query) {
+        const qb = enrollmentRepository.createQueryBuilder("enrollments")
+            .select([
+                "enrollments.id",
+                "enrollments.studentId",
+                "enrollments.courseId"
+            ])
+        const page = Math.max(Number(query.page) || 1, 1)
+        const limit = Number(query.limit) || 5
+        qb.skip((page - 1) * limit)
+            .take(limit)
+        const [data, total] = await qb.getManyAndCount()
+        return { data, total }
     }
 
     static async getEnrollmentById(id: number) {
