@@ -1,43 +1,27 @@
 import { CourseService } from "../sercive/courses.service";
 import { Request, Response } from "express";
+import { ApiResponse } from "../utils/apiResponse";
 
 export class CourseController {
     static async createCourse(req: Request, res: Response) {
         try {
             const course = await CourseService.createCourse(req.body)
-            return res.status(201).json({
-                success: true,
-                message: "Course created successfully",
-                data: course
-            })
+            return ApiResponse.success(res, course, "Course created successfully", 201)
         } catch (e) {
             if (e.message === "Title already exists") {
-                return res.status(409).json({
-                    success: false,
-                    message: e.message
-                })
+                return ApiResponse.error(res, e.message, 409)
             }
-            return res.status(500).json({
-                success: false,
-                message: "Internal server error"
-            })
+            return ApiResponse.error(res, "Internal Server Error", 500)
         }
     }
 
     static async getAllCourses(req: Request, res: Response) {
         try {
             const courses = await CourseService.getAllCourses(req.query)
-            return res.status(200).json({
-                success: true,
-                message: "Courses fetched successfully",
-                data: courses.data
-            })
+            return ApiResponse.success(res, courses, "Course fetched successfully", 200)
         } catch (e) {
             console.log(e)
-            return res.status(500).json({
-                success: false,
-                message: "Internal Server Error"
-            })
+            return ApiResponse.error(res, "Internal Server Error", 500)
         }
     }
 
