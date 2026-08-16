@@ -39,7 +39,12 @@ export class StudentService {
                 "students.phone",
                 "students.age",
             ])
+        if (query.name) {
+            qb.where("students.name LIKE :name", { name: `%${query.name}%` })
 
+        }
+
+        qb.orderBy("students.id", "DESC")
 
         qb.skip((page - 1) * limit)
         qb.take(limit)
