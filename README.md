@@ -46,4 +46,4 @@ Start the server using `npm run dev` script:
 npm run dev
 ```
 
-The server should now be running. Check your console to see the database connection success message.
+The server should now be running. Check your console to see the database connection success message. Thank You
